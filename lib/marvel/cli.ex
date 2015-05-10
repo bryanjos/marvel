@@ -2,6 +2,11 @@ defmodule Marvel.CLI do
   @moduledoc false
 
   @characters_command "characters"
+  @creators_command "creators"
+  @comics_command "comics"
+  @events_command "events"
+  @series_command "series"
+  @stories_command "stories"
 
   def main(argv) do
     argv
@@ -11,22 +16,27 @@ defmodule Marvel.CLI do
 
   def parse_args(args) do
     switches = [ 
-      id: :integer, search: :binary, comics: :boolean, 
-      events: :boolean, series: :boolean, stories: :boolean 
+      id: :integer, name: :binary, search: :binary, 
+      comics: :boolean, events: :boolean, series: :boolean, 
+      stories: :boolean, characters: :boolean, creators: :boolean 
     ]
 
-    aliases = [ s: :search ]
+    aliases = [ 
+      i: :id, n: :name, s: :search, 
+      co: :comics, ev: :events, se: :series, 
+      st: :stories, ch: :characters, cr: :creators 
+    ]
     
     parse = OptionParser.parse(args, switches: switches, aliases: aliases)
 
     case parse do
-      { _ , [@characters_command, name] , _ } -> { :characters, [name: name] }
       { [id: _] = opts , [@characters_command] , _ } -> { :characters, opts }
       { [id: _, comics: true] = opts , [@characters_command] , _ } -> { :characters, opts }
       { [id: _, events: true] = opts , [@characters_command] , _ } -> { :characters, opts }
       { [id: _, series: true] = opts , [@characters_command] , _ } -> { :characters, opts }
       { [id: _, stories: true] = opts ,[@characters_command] , _ } -> { :characters, opts }
       { [search: _] = opts , [@characters_command] , _ } -> { :characters, opts }
+      { [name: _] = opts , [@characters_command] , _ } -> { :characters, opts }
       { _ , [@characters_command] , _ } -> { :characters }
 
 
@@ -74,11 +84,11 @@ defmodule Marvel.CLI do
 
       options:
       -s  --search  [searchText]  searches for characters that begin with the searchText
-      --id [id]                   the id of the character
-      --comics                    the comics for the character
-      --events                    the events for the character
-      --series                    the series for the character
-      --stories                   the stories for the character
+      -i  --id [id]               the id of the character
+      -co --comics                the comics for the character
+      -ev --events                the events for the character
+      -se --series                the series for the character
+      -st --stories               the stories for the character
     """
   end
 end
