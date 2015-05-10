@@ -1,0 +1,11 @@
+%{"excoveralls": {:hex, :excoveralls, "0.3.10"},
+  "exjsx": {:hex, :exjsx, "3.1.0"},
+  "hackney": {:hex, :hackney, "1.1.0"},
+  "hexate": {:hex, :hexate, "0.5.1"},
+  "httpoison": {:hex, :httpoison, "0.6.2"},
+  "idna": {:hex, :idna, "1.0.2"},
+  "jsx": {:hex, :jsx, "2.4.0"},
+  "poison": {:hex, :poison, "1.4.0"},
+  "shouldi": {:git, "git://github.com/batate/shouldi.git", "319737ba8ab0152df31fb0761994029da815b316", []},
+  "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.4"},
+  "timex": {:hex, :timex, "0.13.4"}}
