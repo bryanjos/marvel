@@ -17,16 +17,28 @@ or looks for the following environment variables
 Usage for CLI Client:
 
 ```
-usage: marvel <command> [options]
+  usage: marvel <command> [options]
 
-commands:
-  characters  Gets character data
+  commands:
+    characters    Gets character data.
+    comics        Gets comic data.
+    creators      Gets creator data.
+    events        Gets event data.
+    series        Gets series data.
+    stories       Gets story data.
 
-options:
--s  --search  [searchText]  searches for characters that begin with the searchText
--i  --id [id]               the id of the character
--co --comics                the comics for the character
--ev --events                the events for the character
--se --series                the series for the character
--st --stories               the stories for the character
+  "entity" in the options below correspond to the commands above.
+  You cannot the option if it has the same name as the command
+
+  invalid ex: marvel characters --characters
+
+  options:
+    -s  --search  [searchText]  searches for entities that begin with the searchText
+    -i  --id [id]               the id of the entity
+    -co --comics                the comics for the entity
+    -ev --events                the events for the entity
+    -se --series                the series for the entity (does not work for comics)
+    -st --stories               the stories for the entity
+    -ch --characters            the characters for the entity (does not work for creators)
+    -ch --creators              the creators for the entity (does not work for characters)
 ```
