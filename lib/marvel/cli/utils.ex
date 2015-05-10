@@ -23,7 +23,7 @@ defmodule Marvel.CLI.Utils do
     print_end
   end
 
-  def format_basic_character_output(character) do
+  def format_character_output(character) do
     id = character["id"]
     name = character["name"]
     description = character["description"]

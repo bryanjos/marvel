@@ -17,7 +17,7 @@ defmodule Marvel.Mixfile do
 
   defp description do
     """
-    Marvel CLI Client
+    Marvel API and CLI Client
     """
   end
 
@@ -43,7 +43,7 @@ defmodule Marvel.Mixfile do
 
   defp package do
     [ # These are the default files included in the package
-      files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "CHANGELOG*", "marvel"],
+      files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "CHANGELOG*"],
       contributors: ["Bryan Joseph"],
       licenses: ["MIT"],
       links: %{ 
