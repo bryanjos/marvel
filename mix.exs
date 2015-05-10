@@ -34,7 +34,8 @@ defmodule Marvel.Mixfile do
       { :poison, "~> 1.4" },
       { :httpoison, "~> 0.6"},
       { :timex, "~> 0.13.4"},
-      {:hexate,  ">= 0.5.0"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.7", only: :dev},
       { :excoveralls, only: [:dev, :test] },
       { :shouldi, github: "batate/shouldi", only: :test }
     ]

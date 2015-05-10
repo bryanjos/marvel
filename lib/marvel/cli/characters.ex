@@ -1,4 +1,6 @@
 defmodule Marvel.CLI.Characters do
+  @moduledoc false
+  
   alias Marvel.CLI.Utils
 
   def characters() do

@@ -1,4 +1,6 @@
 defmodule Marvel.CLI.Utils do
+  @moduledoc false
+  
   def process_results(result, format_fn) do
     case result do
       {:ok, response } ->

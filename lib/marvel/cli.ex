@@ -1,4 +1,6 @@
 defmodule Marvel.CLI do
+  @moduledoc false
+
   @characters_command "characters"
 
   def main(argv) do
@@ -12,7 +14,7 @@ defmodule Marvel.CLI do
       id: :integer, search: :binary, comics: :boolean, 
       events: :boolean, series: :boolean, stories: :boolean 
     ]
-    
+
     aliases = [ s: :search ]
     
     parse = OptionParser.parse(args, switches: switches, aliases: aliases)
