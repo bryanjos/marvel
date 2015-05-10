@@ -23,6 +23,9 @@ defmodule Marvel do
     -s  --search  [searchText]  searches for characters that begin with the searchText
     --id [id]                   the id of the character
     --comics                    the comics for the character
+    --events                    the events for the character
+    --series                    the series for the character
+    --stories                   the stories for the character
     ```
   """
 end

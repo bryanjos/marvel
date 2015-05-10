@@ -4,7 +4,7 @@ defmodule Marvel.Mixfile do
   def project do
     [
       app: :marvel,
-      version: "0.0.1",
+      version: "0.4.0",
       elixir: "~> 1.0",
       escript: escript_config,
       build_embedded: Mix.env == :prod,
