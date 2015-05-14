@@ -13,6 +13,8 @@ or looks for the following environment variables
 * `MARVEL_PUBLIC_KEY` - Your Marvel Public Key
 * `MARVEL_PRIVATE_KEY` - Your Marvel Private Key
 
+[Documentation](http://hexdocs.pm/marvel/)
+
 
 Usage for CLI Client:
 
