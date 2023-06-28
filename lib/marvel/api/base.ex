@@ -1,10 +1,10 @@
 defmodule Marvel.API.Base do
   @moduledoc false
-  
+
+  @base_url "http://gateway.marvel.com/v1/public"
+
   defmacro __using__(opts) do
     quote do
-      alias Marvel.API.Base
-
       @doc """
       Fetches lists
       """
@@ -41,7 +41,7 @@ defmodule Marvel.API.Base do
         end
       end
 
-      if unquote(opts[:entity]) != "creators" && unquote(opts[:entity]) != "characters"  do
+      if unquote(opts[:entity]) != "creators" && unquote(opts[:entity]) != "characters" do
         @doc """
         Fetches lists of creators filtered by id
         """
@@ -83,37 +83,46 @@ defmodule Marvel.API.Base do
     end
   end
 
-  defp public_key do
+  def get(endpoint, params) do
+    config = default_config()
+    base_url = Keyword.get(config, :base_url, @base_url)
+    http_client = Keyword.get(config, :http_client)
+
+    ts = timestamp()
+    private_key = private_key()
+    public_key = public_key()
+
+    hash =
+      :crypto.hash(:md5, "#{ts}#{private_key}#{public_key}")
+      |> Base.encode16(case: :lower)
+
+    params =
+      Map.merge(params, %{ts: ts, apikey: public_key, hash: hash})
+      |> URI.encode_query()
+
+    case http_client.get("#{base_url}/#{endpoint}?#{params}") do
+      {:ok, %{status_code: 200, body: body}} ->
+        {:ok, Jason.decode!(body)}
+
+      {:ok, %{status_code: status_code, body: body}} when status_code in 401..409 ->
+        {:error, Jason.decode!(body)}
+
+      {:error, %{reason: reason}} ->
+        {:error, %{message: reason}}
+    end
+  end
+
+  defp public_key() do
     Application.get_env(:marvel, :public_key, System.get_env("MARVEL_PUBLIC_KEY"))
   end
 
-  defp private_key do
+  defp private_key() do
     Application.get_env(:marvel, :private_key, System.get_env("MARVEL_PRIVATE_KEY"))
   end
 
-  defp timestamp do
-    round(Timex.Time.now(:secs))
+  defp timestamp() do
+    Timex.to_unix(Timex.now())
   end
 
-  def get(url, params) do
-    base_url = "http://gateway.marvel.com:80/v1/public"
-
-    ts = timestamp
-    apikey = public_key
-
-    hash = :crypto.hash(:md5, "#{ts}#{private_key}#{apikey}") 
-    |> Base.encode16(case: :lower)
-
-    params = Map.merge(params, %{ts: ts, apikey: apikey, hash: hash})
-    |> URI.encode_query
-
-    case HTTPoison.get("#{base_url}/#{url}?#{params}") do
-      {:ok, %HTTPoison.Response{status_code: 200, body: body}} ->
-        {:ok, Poison.decode!(body) }
-      {:ok, %HTTPoison.Response{status_code: status_code, body: body}} when status_code in 401..409 ->
-        {:error, Poison.decode!(body) }
-      {:error, %HTTPoison.Error{reason: reason}} ->
-        {:error, %{"message": reason} }
-    end
-  end
+  defp default_config(), do: Application.get_env(:marvel, :marvel_api)
 end

@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Comics do
   @moduledoc false
-  
+
   alias Marvel.CLI.Utils
 
   def list() do
@@ -35,7 +35,7 @@ defmodule Marvel.CLI.Comics do
 
   def series(id) do
     Marvel.API.Comics.creators(id)
-    |> Utils.process_results(&Utils.format_creators_output/1)
+    |> Utils.process_results(&Utils.format_creator_output/1)
   end
 
   def stories(id) do

@@ -5,13 +5,13 @@ defmodule Marvel.Mixfile do
     [
       app: :marvel,
       version: "1.0.0",
-      elixir: "~> 1.0",
-      escript: escript_config,
+      elixir: "~> 1.15",
+      escript: escript_config(),
       build_embedded: Mix.env == :prod,
       start_permanent: Mix.env == :prod,
-      deps: deps,
-      package: package,
-      description: description
+      deps: deps(),
+      package: package(),
+      description: description()
     ]
   end
 
@@ -26,18 +26,19 @@ defmodule Marvel.Mixfile do
   end
 
   def application do
-    [applications: [:logger, :poison, :httpoison]]
+    [extra_applications: [:logger, :runtime_tools, :httpoison]]
   end
 
   defp deps do
     [
-      { :poison, "~> 1.4" },
-      { :httpoison, "~> 0.6"},
-      { :timex, "~> 0.13.4"},
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.7", only: :dev},
-      { :excoveralls, only: [:dev, :test] },
-      { :shouldi, github: "batate/shouldi", only: :test }
+      {:httpoison, "~> 2.1"},
+      {:jason, "~> 1.2"},
+      {:timex, "~> 3.7"},
+      {:earmark, "~> 1.4", only: :dev},
+      {:ex_doc, "~> 0.29.4", only: :dev},
+      {:esbuild, "~> 0.7.1"},
+      {:excoveralls, "~> 0.16.1", only: [:dev, :test]},
+      {:mox, "~> 1.0", only: :test}
     ]
   end
 
@@ -46,7 +47,7 @@ defmodule Marvel.Mixfile do
       files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "CHANGELOG*"],
       contributors: ["Bryan Joseph"],
       licenses: ["MIT"],
-      links: %{ 
+      links: %{
         "GitHub" => "https://github.com/bryanjos/marvel"
       }
     ]

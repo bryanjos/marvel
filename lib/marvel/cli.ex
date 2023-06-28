@@ -15,18 +15,18 @@ defmodule Marvel.CLI do
   end
 
   def parse_args(args) do
-    switches = [ 
-      id: :integer, name: :binary, search: :binary, 
-      comics: :boolean, events: :boolean, series: :boolean, 
-      stories: :boolean, characters: :boolean, creators: :boolean 
+    switches = [
+      id: :integer, name: :binary, search: :binary,
+      comics: :boolean, events: :boolean, series: :boolean,
+      stories: :boolean, characters: :boolean, creators: :boolean
     ]
 
-    aliases = [ 
-      i: :id, n: :name, s: :search, 
-      co: :comics, ev: :events, se: :series, 
-      st: :stories, ch: :characters, cr: :creators 
+    aliases = [
+      i: :id, n: :name, s: :search,
+      co: :comics, ev: :events, se: :series,
+      st: :stories, ch: :characters, cr: :creators
     ]
-    
+
     parse = OptionParser.parse(args, switches: switches, aliases: aliases)
 
     case parse do

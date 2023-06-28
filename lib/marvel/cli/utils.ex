@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Utils do
   @moduledoc false
-  
+
   def process_results(result, format_fn) do
     case result do
       {:ok, response } ->
@@ -20,7 +20,7 @@ defmodule Marvel.CLI.Utils do
     count = data["data"]["count"]
 
     print_metadata("offset: #{offset} limit: #{limit} total: #{total} count: #{count}")
-    print_end
+    print_end()
   end
 
   def format_character_output(character) do
@@ -42,7 +42,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Stories", stories_available)
     print_row("Events", events_available)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   def format_comic_output(comic) do
@@ -71,7 +71,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Stories", stories)
     print_row("Events", events)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   def format_event_output(event) do
@@ -100,7 +100,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Characters", characters)
     print_row("Creators", creators)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   def format_series_output(series) do
@@ -131,7 +131,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Characters", characters)
     print_row("Creators", creators)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   def format_story_output(story) do
@@ -158,7 +158,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Characters", characters)
     print_row("Creators", creators)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   def format_creator_output(creator) do
@@ -179,7 +179,7 @@ defmodule Marvel.CLI.Utils do
     print_row("Events", events)
     print_row("Stories", stories)
     print_row("Image", image)
-    print_end
+    print_end()
   end
 
   defp print_end() do
@@ -196,12 +196,12 @@ defmodule Marvel.CLI.Utils do
   end
 
   def format_items(items) do
-    Enum.map(items, fn(x) -> 
+    Enum.map(items, fn(x) ->
           id = x["resourceURI"] |> String.split("/") |> List.last
           name = x["name"]
 
           "#{name} (#{id})"
-        end) 
+        end)
         |> Enum.join(", ")
   end
 
