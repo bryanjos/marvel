@@ -23,8 +23,6 @@ defmodule Marvel.CLI.Events do
     |> Utils.process_results(&Utils.format_event_output/1)
   end
 
-
-
   def comics(id) do
     Marvel.API.Events.comics(id)
     |> Utils.process_results(&Utils.format_comic_output/1)

@@ -7,8 +7,8 @@ defmodule Marvel.Mixfile do
       version: "1.0.0",
       elixir: "~> 1.15",
       escript: escript_config(),
-      build_embedded: Mix.env == :prod,
-      start_permanent: Mix.env == :prod,
+      build_embedded: Mix.env() == :prod,
+      start_permanent: Mix.env() == :prod,
       deps: deps(),
       package: package(),
       description: description()
@@ -43,7 +43,8 @@ defmodule Marvel.Mixfile do
   end
 
   defp package do
-    [ # These are the default files included in the package
+    # These are the default files included in the package
+    [
       files: ["lib", "mix.exs", "README*", "readme*", "LICENSE*", "license*", "CHANGELOG*"],
       contributors: ["Bryan Joseph"],
       licenses: ["MIT"],

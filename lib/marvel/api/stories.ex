@@ -4,5 +4,4 @@ defmodule Marvel.API.Stories do
   @moduledoc """
   The Marvel Stories API
   """
-  
 end

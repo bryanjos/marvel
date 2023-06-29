@@ -4,5 +4,4 @@ defmodule Marvel.API.Events do
   @moduledoc """
   The Marvel Events API
   """
-  
 end

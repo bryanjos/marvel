@@ -37,7 +37,7 @@ defmodule Marvel.API.Test do
       series_get_resp = mock_successful_response("series_get")
       stories_get_resp = mock_successful_response("stories_get")
 
-      assert {:ok, characters_get_resp} == Characters.get(1011334)
+      assert {:ok, characters_get_resp} == Characters.get(1_011_334)
       assert {:ok, comics_get_resp} == Comics.get(82967)
       assert {:ok, creators_get_resp} == Creators.get(13970)
       assert {:ok, events_get_resp} == Events.get(116)
@@ -62,7 +62,7 @@ defmodule Marvel.API.Test do
       events_characters_resp = mock_successful_response("events_characters")
       series_characters_resp = mock_successful_response("series_characters")
 
-      assert {:ok, stories_characters_resp} == Stories.characters(1011334)
+      assert {:ok, stories_characters_resp} == Stories.characters(1_011_334)
       assert {:ok, comics_characters_resp} == Comics.characters(82967)
       assert {:ok, events_characters_resp} == Events.characters(116)
       assert {:ok, series_characters_resp} == Series.characters(31445)
@@ -75,7 +75,7 @@ defmodule Marvel.API.Test do
       series_comics_resp = mock_successful_response("series_comics")
       stories_comics_resp = mock_successful_response("stories_comics")
 
-      assert {:ok, characters_comics_resp} == Characters.comics(1011334)
+      assert {:ok, characters_comics_resp} == Characters.comics(1_011_334)
       assert {:ok, creators_comics_resp} == Creators.comics(13970)
       assert {:ok, events_comics_resp} == Events.comics(116)
       assert {:ok, series_comics_resp} == Series.comics(31445)
@@ -101,7 +101,7 @@ defmodule Marvel.API.Test do
       series_events_resp = mock_successful_response("series_events")
       stories_events_resp = mock_successful_response("stories_events")
 
-      assert {:ok, characters_events_resp} == Characters.get(1011334)
+      assert {:ok, characters_events_resp} == Characters.get(1_011_334)
       assert {:ok, comics_events_resp} == Comics.get(82967)
       assert {:ok, creators_events_resp} == Creators.get(13970)
       assert {:ok, series_events_resp} == Series.get(31445)
@@ -114,7 +114,7 @@ defmodule Marvel.API.Test do
       events_series_resp = mock_successful_response("events_series")
       stories_series_resp = mock_successful_response("stories_series")
 
-      assert {:ok, characters_series_resp} == Characters.series(1011334)
+      assert {:ok, characters_series_resp} == Characters.series(1_011_334)
       assert {:ok, creators_series_resp} == Creators.series(13970)
       assert {:ok, events_series_resp} == Events.series(116)
       assert {:ok, stories_series_resp} == Stories.series(7)
@@ -127,7 +127,7 @@ defmodule Marvel.API.Test do
       events_stories_resp = mock_successful_response("events_stories")
       series_stories_resp = mock_successful_response("series_stories")
 
-      assert {:ok, characters_stories_resp} == Characters.stories(1011334)
+      assert {:ok, characters_stories_resp} == Characters.stories(1_011_334)
       assert {:ok, comics_stories_resp} == Comics.stories(82967)
       assert {:ok, creators_stories_resp} == Creators.stories(13970)
       assert {:ok, events_stories_resp} == Events.stories(116)
@@ -138,7 +138,7 @@ defmodule Marvel.API.Test do
   @http_client Marvel.HTTPClientMock
 
   defp mock_successful_response(type) do
-    {resp, _} = Code.eval_file( "test/support/fixtures/#{type}.exs")
+    {resp, _} = Code.eval_file("test/support/fixtures/#{type}.exs")
 
     expect(
       @http_client,

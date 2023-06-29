@@ -3,9 +3,10 @@ defmodule Marvel.CLI.Utils do
 
   def process_results(result, format_fn) do
     case result do
-      {:ok, response } ->
+      {:ok, response} ->
         show_attribution(response)
         Enum.map(response["data"]["results"], &format_fn.(&1))
+
       {:error, body} ->
         IO.puts(body["message"])
     end
@@ -183,8 +184,8 @@ defmodule Marvel.CLI.Utils do
   end
 
   defp print_end() do
-    "" |> IO.puts
-    "" |> IO.puts
+    "" |> IO.puts()
+    "" |> IO.puts()
   end
 
   defp print_row(key, value) do
@@ -196,13 +197,13 @@ defmodule Marvel.CLI.Utils do
   end
 
   def format_items(items) do
-    Enum.map(items, fn(x) ->
-          id = x["resourceURI"] |> String.split("/") |> List.last
-          name = x["name"]
+    Enum.map(items, fn x ->
+      id = x["resourceURI"] |> String.split("/") |> List.last()
+      name = x["name"]
 
-          "#{name} (#{id})"
-        end)
-        |> Enum.join(", ")
+      "#{name} (#{id})"
+    end)
+    |> Enum.join(", ")
   end
 
   def format_thumbnail(nil) do
