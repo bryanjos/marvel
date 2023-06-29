@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Series do
   @moduledoc false
-  
+
   alias Marvel.CLI.Utils
 
   def list() do
@@ -22,8 +22,6 @@ defmodule Marvel.CLI.Series do
     Marvel.API.Series.list(%{nameStartsWith: searchText})
     |> Utils.process_results(&Utils.format_series_output/1)
   end
-
-  
 
   def comics(id) do
     Marvel.API.Series.comics(id)

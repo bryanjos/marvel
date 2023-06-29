@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Creators do
   @moduledoc false
-  
+
   alias Marvel.CLI.Utils
 
   def list() do

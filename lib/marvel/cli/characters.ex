@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Characters do
   @moduledoc false
-  
+
   alias Marvel.CLI.Utils
 
   def list() do
@@ -25,21 +25,21 @@ defmodule Marvel.CLI.Characters do
 
   def comics(id) do
     Marvel.API.Characters.comics(id)
-    |> Utils.process_results(&Utils.format_comic_list_output/1)
+    |> Utils.process_results(&Utils.format_comic_output/1)
   end
 
   def events(id) do
     Marvel.API.Characters.events(id)
-    |> Utils.process_results(&Utils.format_event_list_output/1)
+    |> Utils.process_results(&Utils.format_event_output/1)
   end
 
   def series(id) do
     Marvel.API.Characters.series(id)
-    |> Utils.process_results(&Utils.format_series_list_output/1)
+    |> Utils.process_results(&Utils.format_series_output/1)
   end
 
   def stories(id) do
     Marvel.API.Characters.stories(id)
-    |> Utils.process_results(&Utils.format_story_list_output/1)
+    |> Utils.process_results(&Utils.format_story_output/1)
   end
 end

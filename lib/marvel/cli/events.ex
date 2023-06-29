@@ -1,6 +1,6 @@
 defmodule Marvel.CLI.Events do
   @moduledoc false
-  
+
   alias Marvel.CLI.Utils
 
   def list() do
@@ -22,8 +22,6 @@ defmodule Marvel.CLI.Events do
     Marvel.API.Events.list(%{nameStartsWith: searchText})
     |> Utils.process_results(&Utils.format_event_output/1)
   end
-
-  
 
   def comics(id) do
     Marvel.API.Events.comics(id)

@@ -3,5 +3,5 @@ defmodule Marvel.API.Creators do
 
   @moduledoc """
   The Marvel Creators API
-  """  
+  """
 end
